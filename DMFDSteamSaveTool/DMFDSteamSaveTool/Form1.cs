@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Windows.Forms;
 
@@ -21,13 +21,11 @@ namespace DMFDSteamSaveTool
 
         private bool ValidSteamID (string steamID)
         {
-            if (steamID.Length != 17 || System.Text.RegularExpressions.Regex.IsMatch(steamID, "[^0-9]"))
+            if (steamID.Length == 0 || System.Text.RegularExpressions.Regex.IsMatch(steamID, "[^0-9]"))
             {
-                //errorMessage = "Please enter the 17 digits of your Steam ID.\nOnly numbers are accepted.";
                 return false;
             }
 
-            //errorMessage = null;
             return true;
 
         }
@@ -142,7 +140,7 @@ namespace DMFDSteamSaveTool
 
             else
             {
-                MessageBox.Show("Please enter the 17 digits of your Steam ID.\nOnly numbers are accepted.", "Invalid Steam ID", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please enter a Steam ID.\nOnly numbers are accepted.", "Invalid Steam ID", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -211,7 +209,7 @@ namespace DMFDSteamSaveTool
 
             else
             {
-                MessageBox.Show("Please enter the 17 digits of your Steam ID.\nOnly numbers are accepted.", "Invalid Steam ID", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please enter a Steam ID.\nOnly numbers are accepted.", "Invalid Steam ID", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }
