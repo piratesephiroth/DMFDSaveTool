@@ -1,4 +1,4 @@
-﻿namespace DMFDSteamSaveTool
+namespace DMFDSteamSaveTool
 {
     partial class Form1
     {
@@ -35,13 +35,11 @@
             this.encFileNameLabel = new System.Windows.Forms.Label();
             this.decFileNameLabel = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.browseEnc_button = new System.Windows.Forms.Button();
-            this.browseDec_button = new System.Windows.Forms.Button();
             this.decrypt_button = new System.Windows.Forms.Button();
+            this.browseEnc_button = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.encrypt_button = new System.Windows.Forms.Button();
-
-
+            this.browseDec_button = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -67,9 +65,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(14, 22);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 17);
+            this.label1.Size = new System.Drawing.Size(54, 17);
             this.label1.TabIndex = 99;
-            this.label1.Text = "steamID64:";
+            this.label1.Text = "Steam ID:";
             this.label1.UseCompatibleTextRendering = true;
             // 
             // label2
@@ -77,9 +75,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(14, 22);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(62, 17);
+            this.label2.Size = new System.Drawing.Size(54, 17);
             this.label2.TabIndex = 99;
-            this.label2.Text = "steamID64:";
+            this.label2.Text = "Steam ID:";
             this.label2.UseCompatibleTextRendering = true;
             // 
             // encFileNameLabel
@@ -117,6 +115,29 @@
             this.groupBox1.Text = "Encrypted save file";
             this.groupBox1.UseCompatibleTextRendering = true;
             // 
+            // decrypt_button
+            // 
+            this.decrypt_button.Enabled = false;
+            this.decrypt_button.Location = new System.Drawing.Point(5, 70);
+            this.decrypt_button.Name = "decrypt_button";
+            this.decrypt_button.Size = new System.Drawing.Size(213, 20);
+            this.decrypt_button.TabIndex = 2;
+            this.decrypt_button.Text = "Decrypt with Steam ID";
+            this.decrypt_button.UseCompatibleTextRendering = true;
+            this.decrypt_button.UseVisualStyleBackColor = true;
+            this.decrypt_button.Click += new System.EventHandler(this.decrypt_button_Click);
+            // 
+            // browseEnc_button
+            // 
+            this.browseEnc_button.Location = new System.Drawing.Point(5, 45);
+            this.browseEnc_button.Name = "browseEnc_button";
+            this.browseEnc_button.Size = new System.Drawing.Size(64, 20);
+            this.browseEnc_button.TabIndex = 1;
+            this.browseEnc_button.Text = "Browse...";
+            this.browseEnc_button.UseCompatibleTextRendering = true;
+            this.browseEnc_button.UseVisualStyleBackColor = true;
+            this.browseEnc_button.Click += new System.EventHandler(this.browseEnc_button_Click);
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.label2);
@@ -132,40 +153,6 @@
             this.groupBox2.Text = "Decrypted save file";
             this.groupBox2.UseCompatibleTextRendering = true;
             // 
-            // browseEnc_button
-            // 
-            this.browseEnc_button.Location = new System.Drawing.Point(5, 45);
-            this.browseEnc_button.Name = "browseEnc_button";
-            this.browseEnc_button.Size = new System.Drawing.Size(64, 20);
-            this.browseEnc_button.TabIndex = 1;
-            this.browseEnc_button.Text = "Browse...";
-            this.browseEnc_button.UseCompatibleTextRendering = true;
-            this.browseEnc_button.UseVisualStyleBackColor = true;
-            this.browseEnc_button.Click += new System.EventHandler(this.browseEnc_button_Click);
-            // 
-            // browseDec_button
-            // 
-            this.browseDec_button.Location = new System.Drawing.Point(5, 45);
-            this.browseDec_button.Name = "browseDec_button";
-            this.browseDec_button.Size = new System.Drawing.Size(64, 20);
-            this.browseDec_button.TabIndex = 4;
-            this.browseDec_button.Text = "Browse...";
-            this.browseDec_button.UseCompatibleTextRendering = true;
-            this.browseDec_button.UseVisualStyleBackColor = true;
-            this.browseDec_button.Click += new System.EventHandler(this.browseDec_button_Click);
-            // 
-            // decrypt_button
-            // 
-            this.decrypt_button.Enabled = false;
-            this.decrypt_button.Location = new System.Drawing.Point(5, 70);
-            this.decrypt_button.Name = "decrypt_button";
-            this.decrypt_button.Size = new System.Drawing.Size(213, 20);
-            this.decrypt_button.TabIndex = 2;
-            this.decrypt_button.Text = "Decrypt with Steam ID";
-            this.decrypt_button.UseCompatibleTextRendering = true;
-            this.decrypt_button.UseVisualStyleBackColor = true;
-            this.decrypt_button.Click += new System.EventHandler(this.decrypt_button_Click);
-            // 
             // encrypt_button
             // 
             this.encrypt_button.Enabled = false;
@@ -177,8 +164,17 @@
             this.encrypt_button.UseCompatibleTextRendering = true;
             this.encrypt_button.UseVisualStyleBackColor = true;
             this.encrypt_button.Click += new System.EventHandler(this.encrypt_button_Click);
-
-
+            // 
+            // browseDec_button
+            // 
+            this.browseDec_button.Location = new System.Drawing.Point(5, 45);
+            this.browseDec_button.Name = "browseDec_button";
+            this.browseDec_button.Size = new System.Drawing.Size(64, 20);
+            this.browseDec_button.TabIndex = 4;
+            this.browseDec_button.Text = "Browse...";
+            this.browseDec_button.UseCompatibleTextRendering = true;
+            this.browseDec_button.UseVisualStyleBackColor = true;
+            this.browseDec_button.Click += new System.EventHandler(this.browseDec_button_Click);
             // 
             // Form1
             // 
