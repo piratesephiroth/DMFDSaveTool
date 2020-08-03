@@ -180,8 +180,8 @@ namespace DMFDSteamSaveTool
                     chksum0 = dmfd.Checksum(saveData);
 
                     // encrypt it
-                    dmfd.Encrypt(halfPassword1 + steamID.ToString("x" + 8), ref saveData);
-                    dmfd.Encrypt(halfPassword0 + steamID.ToString("x" + 8), ref saveData);
+                    dmfd.Encrypt(halfPassword1 + steamID.ToString("x"), ref saveData);
+                    dmfd.Encrypt(halfPassword0 + steamID.ToString("x"), ref saveData);
 
                     // 2nd checksum
                     chksum1 = dmfd.Checksum(saveData);
