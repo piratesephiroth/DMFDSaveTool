@@ -21,14 +21,15 @@ namespace DMFDSteamSaveTool
 
         private bool ValidSteamID (string steamID)
         {
-            if (steamID.Length == 0 || System.Text.RegularExpressions.Regex.IsMatch(steamID, "[^0-9]"))
+            if (System.Text.RegularExpressions.Regex.IsMatch(steamID, "[^0-9]"))
             {
                 return false;
             }
 
             return true;
-
         }
+
+
         //
         // load input files
         //
@@ -106,21 +107,29 @@ namespace DMFDSteamSaveTool
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     outputDecFilePath = saveFileDialog.FileName;
-                    
-                    ulong steamID = ulong.Parse(steamID64_enc.Text) & 0xFFFFFFFF;
 
                     byte[] saveData;
 
-                    // load encrypted file and read its contents
+                    // load encrypted file and read its contents into byte array
                     using (BinaryReader inFile = new BinaryReader(File.OpenRead(encFilePath)))
                     {
                         inFile.BaseStream.Position = 0x10;  // skip header
                         saveData = inFile.ReadBytes((int)(inFile.BaseStream.Length - 0x10));
                     }
 
-                    // decrypt it
-                    dmfd.Decrypt(halfPassword0 + steamID.ToString("x" + 8), ref saveData);
-                    dmfd.Decrypt(halfPassword1 + steamID.ToString("x" + 8), ref saveData);
+                    // Steam
+                    if (steamID64_enc.Text.Length > 0)
+                    {
+                        ulong steamID = ulong.Parse(steamID64_enc.Text) & 0xFFFFFFFF;
+                        dmfd.Decrypt(halfPassword0 + steamID.ToString("x"), ref saveData);
+                        dmfd.Decrypt(halfPassword1 + steamID.ToString("x"), ref saveData);
+                    }
+                    // NS (maybe PS4 too?)
+                    else
+                    {
+                        dmfd.Decrypt(halfPassword0, ref saveData);
+                        dmfd.Decrypt(halfPassword1, ref saveData);
+                    }
 
                     FileMode openMode;
                     if (File.Exists(outputDecFilePath))
@@ -164,8 +173,6 @@ namespace DMFDSteamSaveTool
                     outputEncFilePath = saveFileDialog.FileName;
                     // load decrypted file, encrypt and save it
 
-                    ulong steamID = ulong.Parse(steamID64_dec.Text) & 0xFFFFFFFF;
-
                     // header (0x10 bytes)
                     uint magic = 0xAE9F2304;
                     uint unknown = 0x68;
@@ -176,14 +183,25 @@ namespace DMFDSteamSaveTool
                     // read decrypted data
                     saveData = File.ReadAllBytes(decFilePath);
 
-                    // 1st checksum
+                    // calculate 1st checksum
                     chksum0 = dmfd.Checksum(saveData);
 
-                    // encrypt it
-                    dmfd.Encrypt(halfPassword1 + steamID.ToString("x"), ref saveData);
-                    dmfd.Encrypt(halfPassword0 + steamID.ToString("x"), ref saveData);
+                    // encrypt for Steam
+                    if (steamID64_dec.Text.Length > 0)
+                    {
+                        ulong steamID = ulong.Parse(steamID64_dec.Text) & 0xFFFFFFFF;
+                        dmfd.Encrypt(halfPassword1 + steamID.ToString("x" + 8), ref saveData);
+                        dmfd.Encrypt(halfPassword0 + steamID.ToString("x" + 8), ref saveData);
+                    }
+                    // encrypt for NS (PS4 too?)
+                    else
+                    {
+                        dmfd.Encrypt(halfPassword1, ref saveData);
+                        dmfd.Encrypt(halfPassword0, ref saveData);
+                    }
+                            
 
-                    // 2nd checksum
+                    // calculate 2nd checksum
                     chksum1 = dmfd.Checksum(saveData);
 
                     FileMode openMode;
