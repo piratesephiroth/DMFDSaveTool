@@ -190,8 +190,8 @@ namespace DMFDSteamSaveTool
                     if (steamID64_dec.Text.Length > 0)
                     {
                         ulong steamID = ulong.Parse(steamID64_dec.Text) & 0xFFFFFFFF;
-                        dmfd.Encrypt(halfPassword1 + steamID.ToString("x" + 8), ref saveData);
-                        dmfd.Encrypt(halfPassword0 + steamID.ToString("x" + 8), ref saveData);
+                        dmfd.Encrypt(halfPassword1 + steamID.ToString("x"), ref saveData);
+                        dmfd.Encrypt(halfPassword0 + steamID.ToString("x"), ref saveData);
                     }
                     // encrypt for NS (PS4 too?)
                     else
