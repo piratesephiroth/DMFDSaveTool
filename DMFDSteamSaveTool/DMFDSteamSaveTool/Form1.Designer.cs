@@ -28,6 +28,7 @@ namespace DMFDSteamSaveTool
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.steamID64_enc = new System.Windows.Forms.TextBox();
             this.steamID64_dec = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -40,6 +41,7 @@ namespace DMFDSteamSaveTool
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.encrypt_button = new System.Windows.Forms.Button();
             this.browseDec_button = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -51,6 +53,8 @@ namespace DMFDSteamSaveTool
             this.steamID64_enc.Name = "steamID64_enc";
             this.steamID64_enc.Size = new System.Drawing.Size(122, 20);
             this.steamID64_enc.TabIndex = 0;
+            this.toolTip1.SetToolTip(this.steamID64_enc, "Enter your Steam ID here (or leave it blank if it\'s a save file for a console ver" +
+        "sion)");
             // 
             // steamID64_dec
             // 
@@ -59,6 +63,8 @@ namespace DMFDSteamSaveTool
             this.steamID64_dec.Name = "steamID64_dec";
             this.steamID64_dec.Size = new System.Drawing.Size(122, 20);
             this.steamID64_dec.TabIndex = 3;
+            this.toolTip1.SetToolTip(this.steamID64_dec, "Enter your Steam ID here (or leave it blank if it\'s a save file for a console ver" +
+        "sion)");
             // 
             // label1
             // 
@@ -112,7 +118,7 @@ namespace DMFDSteamSaveTool
             this.groupBox1.Size = new System.Drawing.Size(224, 102);
             this.groupBox1.TabIndex = 99;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Encrypted save file";
+            this.groupBox1.Text = "DECRYPTION";
             this.groupBox1.UseCompatibleTextRendering = true;
             // 
             // decrypt_button
@@ -122,7 +128,8 @@ namespace DMFDSteamSaveTool
             this.decrypt_button.Name = "decrypt_button";
             this.decrypt_button.Size = new System.Drawing.Size(213, 20);
             this.decrypt_button.TabIndex = 2;
-            this.decrypt_button.Text = "Decrypt with Steam ID";
+            this.decrypt_button.Text = "Save decrypted file";
+            this.toolTip1.SetToolTip(this.decrypt_button, "Save your decrypted file (ready to be transferred to another device)");
             this.decrypt_button.UseCompatibleTextRendering = true;
             this.decrypt_button.UseVisualStyleBackColor = true;
             this.decrypt_button.Click += new System.EventHandler(this.decrypt_button_Click);
@@ -134,6 +141,7 @@ namespace DMFDSteamSaveTool
             this.browseEnc_button.Size = new System.Drawing.Size(64, 20);
             this.browseEnc_button.TabIndex = 1;
             this.browseEnc_button.Text = "Browse...";
+            this.toolTip1.SetToolTip(this.browseEnc_button, "Select your encrypted save file");
             this.browseEnc_button.UseCompatibleTextRendering = true;
             this.browseEnc_button.UseVisualStyleBackColor = true;
             this.browseEnc_button.Click += new System.EventHandler(this.browseEnc_button_Click);
@@ -150,7 +158,7 @@ namespace DMFDSteamSaveTool
             this.groupBox2.Size = new System.Drawing.Size(224, 102);
             this.groupBox2.TabIndex = 99;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Decrypted save file";
+            this.groupBox2.Text = "ENCRYPTION";
             this.groupBox2.UseCompatibleTextRendering = true;
             // 
             // encrypt_button
@@ -160,7 +168,8 @@ namespace DMFDSteamSaveTool
             this.encrypt_button.Name = "encrypt_button";
             this.encrypt_button.Size = new System.Drawing.Size(213, 20);
             this.encrypt_button.TabIndex = 5;
-            this.encrypt_button.Text = "Encrypt with Steam ID";
+            this.encrypt_button.Text = "Save encrypted file";
+            this.toolTip1.SetToolTip(this.encrypt_button, "Save your encrypted file (ready to be used by the game)");
             this.encrypt_button.UseCompatibleTextRendering = true;
             this.encrypt_button.UseVisualStyleBackColor = true;
             this.encrypt_button.Click += new System.EventHandler(this.encrypt_button_Click);
@@ -172,6 +181,7 @@ namespace DMFDSteamSaveTool
             this.browseDec_button.Size = new System.Drawing.Size(64, 20);
             this.browseDec_button.TabIndex = 4;
             this.browseDec_button.Text = "Browse...";
+            this.toolTip1.SetToolTip(this.browseDec_button, "Select your decrypted save file");
             this.browseDec_button.UseCompatibleTextRendering = true;
             this.browseDec_button.UseVisualStyleBackColor = true;
             this.browseDec_button.Click += new System.EventHandler(this.browseDec_button_Click);
@@ -210,8 +220,7 @@ namespace DMFDSteamSaveTool
         private System.Windows.Forms.Button browseDec_button;
         private System.Windows.Forms.Button decrypt_button;
         private System.Windows.Forms.Button encrypt_button;
-
-        
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 
